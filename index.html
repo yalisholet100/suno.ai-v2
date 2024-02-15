@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sono AI - Song Creation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
 
+    h1 {
+      color: #333;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .creation-result {
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sono AI - Song Creation</h1>
+
+  <h2>YouTube Lyrics</h2>
+  <label for="youtubeInput">Enter YouTube video URL:</label>
+  <input type="text" id="youtubeInput" placeholder="Paste YouTube video URL">
+  <button onclick="getYouTubeLyrics()">Get Lyrics</button>
+  <div class="creation-result" id="youtubeLyricsResult"></div>
+
+  <h2>Upload Audio File</h2>
+  <input type="file" id="audioFileInput" accept="audio/*">
+  <button onclick="uploadAudio()">Upload Audio</button>
+  <div class="creation-result" id="audioUploadResult"></div>
+
+  <h2>Sono AI - Rhymes</h2>
+  <textarea id="sonoInput" placeholder="Enter seed words for Sono AI"></textarea>
+  <button onclick="getSonoRhymes()">Get Rhymes</button>
+  <div class="creation-result" id="sonoRhymesResult"></div>
+
+  <h2>Create Song</h2>
+  <button onclick="createSong()">Create Song</button>
+  <div class="creation-result" id="songCreationResult"></div>
+
+  <h2>Text to Song</h2>
+  <textarea id="textToSongInput" placeholder="Enter text for conversion to song"></textarea>
+  <button onclick="textToSong()">Text to Song</button>
+  <div class="creation-result" id="textToSongResult"></div>
+
+  <h2>Download Song</h2>
+  <button onclick="downloadAudio()">Download Audio</button>
+  <button onclick="downloadVideo()">Download Video</button>
+
+  <script>
+    const youtubeApiKey = 'YOUR_YOUTUBE_API_KEY';
+    const sonoApiKey = 'YOUR_SONO_API_KEY';
+
+    function getYouTubeLyrics() {
+      // Add YouTube API code to get lyrics here
+    }
+
+    function uploadAudio() {
+      const fileInput = document.getElementById('audioFileInput');
+      const audioFile = fileInput.files[0];
+
+      // Add code to work with the audio file (e.g., upload it to a server and extract lyrics)
+    }
+
+    function getSonoRhymes() {
+      // Add Sono AI API code to get rhymes here
+    }
+
+    function createSong() {
+      const youtubeLyrics = document.getElementById('youtubeLyricsResult').innerText;
+      const audioUploadResult = document.getElementById('audioUploadResult').innerText;
+      const sonoRhymes = document.getElementById('sonoRhymesResult').innerText;
+
+      // Add code for song creation, combining lyrics from different sources creatively
+      const songResult = `YouTube Lyrics: ${youtubeLyrics}\nAudio Lyrics: ${audioUploadResult}\nSono AI Rhymes: ${sonoRhymes}`;
+      document.getElementById('songCreationResult').innerText = songResult;
+    }
+
+    function textToSong() {
+      const textToSongInput = document.getElementById('textToSongInput').value;
+
+      // Add code for converting text to song
+      const textToSongResult = `Text to Song: ${textToSongInput}`;
+      document.getElementById('textToSongResult').innerText = textToSongResult;
+    }
+
+    function downloadAudio() {
+      const songResult = document.getElementById('songCreationResult').innerText;
+      const blob = new Blob([songResult], { type: 'audio/wav' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'song_audio.wav';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function downloadVideo() {
+      const songResult = document.getElementById('songCreationResult').innerText;
+      const blob = new Blob([songResult], { type: 'video/mp4' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'song_video.mp4';
+      document
